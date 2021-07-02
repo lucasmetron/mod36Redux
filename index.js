@@ -1,5 +1,5 @@
 const redux = require('redux');
-const createStore = redux.createStore();
+const createStore = redux.createStore;
 
 const incrementAction = { type: 'INCREMENT' };
 const decrementAction = { type: 'DECREMENT' };
@@ -19,5 +19,9 @@ function counterReducer(state = 0, action) {
 }
 
 const store = createStore(counterReducer);
+
 console.log(store.getState());
+
 store.subscribe(() => { console.log(store.getState()) });
+
+store.dispatch(incrementAction)
