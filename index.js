@@ -11,7 +11,7 @@ function counterReducer(state = 0, action) {
             return state + 1
 
         case 'DECREMENT':
-            return state + 2;
+            return state - 1;
 
         default:
             return state;
@@ -19,5 +19,5 @@ function counterReducer(state = 0, action) {
 }
 
 const store = createStore(counterReducer);
-
+console.log(store.getState());
 store.subscribe(() => { console.log(store.getState()) });
