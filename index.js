@@ -1,6 +1,6 @@
 const redux = require('redux');
 const createStore = redux.createStore;
-const combineReducers = redux.combineReducers;
+const combineReducers = redux.combineReducers; //função para combinar reducers
 
 const incrementAction = (value) => { return { type: 'INCREMENT', payload: value || 1 } }; //se não tiver value payload recebe 1
 const decrementAction = (value) => { return { type: 'DECREMENT', payload: value || 1 } };
@@ -35,21 +35,19 @@ const listReducer = (state = ['Carla'], action) => {  //maneira diferente de faz
     }
 }
 
-const allReducers = combineReducers({
+const allReducers = combineReducers({ //aqui onde é feito a comniação dos reducers
     counter: counterReducer,
     list: listReducer
 })
 
-const store = createStore(allReducers); //salvando nosso estado dentro da store
-
-console.log('estado inicial ' + store.getState().list); //Pegando o primeiro valor da lista antes de alterar
+const store = createStore(allReducers); //salvando nossos reducers com seus estados dentro da store
 
 store.subscribe(() => { console.log(store.getState()) });
 
 store.dispatch(addItemAction('Lucas'));
 store.dispatch(addItemAction('Lais'));
 
-store.dispatch(incrementAction(10)); //aqui é dispatch que entrega a action com payload pro nosso reducer 
-store.dispatch(decrementAction(20)); //aqui é dispatch que entrega a action com payload pro nosso reducer 
+store.dispatch(incrementAction(10));
+store.dispatch(decrementAction(20));
 
-console.log("Meu nome é: " + store.getState().list[1])
+console.log("Meu nome é: " + store.getState().list[1])//expemplo
