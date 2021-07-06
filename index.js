@@ -1,16 +1,15 @@
 const redux = require('redux');
-const createStore = redux.createStore; //colocando o redux dentro da const createStore
+const createStore = redux.createStore;
 
-const incrementAction = { type: 'INCREMENT', payload: 1 }; /
-const increment2Action = { type: 'INCREMENT', payload: 2 }; //AQUI É UMA AÇÃO
-const decrementAction = { type: 'DECREMENT', payload: 1 }; //AQUI É UMA AÇÃO
-const decrement2Action = { type: 'DECREMENT', payload: 2 };
+const incrementAction = (value) => { return { type: 'INCREMENT', payload: value || 1 } }; //se não tiver value payload recebe 1
+const decrementAction = (value) => { return { type: 'DECREMENT', payload: value || 1 } };
 
 
-function counterReducer(state = 0, action) { //AQUI É O REDUCER
+
+function counterReducer(state = 0, action) {
     switch (action.type) {
         case 'INCREMENT':
-            return state + action.payload
+            return state + action.payload;
 
         case 'DECREMENT':
             return state - action.payload;
@@ -22,14 +21,11 @@ function counterReducer(state = 0, action) { //AQUI É O REDUCER
 
 const store = createStore(counterReducer); //salvando nosso estado dentro da store
 
-console.log('estado incial ' + store.getState());
+console.log('estado inicial ' + store.getState());
 
-store.subscribe(() => { //Função subscribe executa toda vez que o estado mudar.
+store.subscribe(() => {
     console.log(store.getState())
 });
 
-store.dispatch(increment2Action); //aqui é dispatch que entrega a action pro nosso reducer 
-store.dispatch(increment2Action); //aqui é dispatch que entrega a action pro nosso reducer 
-
-store.dispatch(decrement2Action); //aqui é dispatch que entrega a action pro nosso reducer 
-store.dispatch(decrement2Action); //aqui é dispatch que entrega a action pro nosso reducer 
+store.dispatch(incrementAction(10)); //aqui é dispatch que entrega a action com payload pro nosso reducer 
+store.dispatch(decrementAction(20)); //aqui é dispatch que entrega a action com payload pro nosso reducer 
