@@ -11,7 +11,7 @@ const initialState = [
     {
         id: 0,
         title: 'tarefa',
-        completed: false
+        completed: true
     }
 ]
 
@@ -27,7 +27,7 @@ const loadItemAndAdd = () => { //feito uma action com uma assíncrona
     }
 }
 
-const listReducer = (state = initialState, action) => {
+const listReducer = (state = [], action) => {
     switch (action.type) {
         case 'ADD_ITEM':
             return [...state, action.payload]
@@ -41,6 +41,6 @@ const store = createStore(listReducer, applyMiddleware(thunk)); //quando for cri
 
 store.subscribe(() => { console.log(store.getState()) })
 
-store.dispatch(addItem({ id: 1, title: "teste", completed: true })) //utilizando action normal
+store.dispatch(addItem({ id: 1, title: "teste", completed: false })) //utilizando action normal
 store.dispatch(loadItemAndAdd()); //utilizando action com thunk 
 
