@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/lucasmetron/mod36Redux#readme",
   "dependencies": {
-    "redux": "^4.1.0"
+    "node-fetch": "^2.6.1",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0"
   }
 }
